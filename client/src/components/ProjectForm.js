@@ -50,7 +50,7 @@ export default class ProjectForm extends Component {
                         />
                         
                         <button type="submit" className="btn blue">
-                            <i className="fas fa-plus-square"></i>
+                            <i className="fas fa-plus"></i>
                         </button>
                         <button onClick={this.props.toggleForm} className="btn blue">
                             <i className="fas fa-times"></i>

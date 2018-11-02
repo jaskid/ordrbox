@@ -45,7 +45,7 @@ exports.signin = async function(req,res,next) {
 
 exports.signup = async function(req,res,next) {
     try {
-        let { email, password, confirm_password, name } = req.body;
+        let { email, password, confirm_password, name, beta, beta_access } = req.body;
         if(!(email.includes('@') && email.includes('.')) || email.length < 3) {
             throw {message:'Please enter a valid email address.'};
         }
@@ -69,6 +69,10 @@ exports.signup = async function(req,res,next) {
         }
         if(name.split(' ')[1].length < 1) {
             throw {message:'Please enter a last name.'};
+        }
+        
+        if(beta && beta_access !== 'auris') {
+            throw {message: 'Incorrect beta access code!'};
         }
         
         let user = await db.User.create({email, password, name});

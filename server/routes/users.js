@@ -74,7 +74,7 @@ router
                     case 'quoteNum':
                         user = await db.User.findById(userid).populate({
                             "path": "orders",
-                            "match": { "metadata.quoteNum" : new RegExp('^'+query.value+'.*', "i"), "stamped": query.stamped, "canceled": false  },
+                            "match": { "metadata.quoteNum" : new RegExp('.*'+query.value+'.*', "i"), "stamped": query.stamped, "canceled": false  },
                             "select": "user group project hold metadata.vendor metadata.quoteNum metadata.extendedCost submitTimestamp stampTimestamp"
                         });
                         break;

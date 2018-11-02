@@ -1,65 +1,70 @@
 import React, { Component } from 'react';
 
-const Items = ({items, handleChange, checkCots}) => {
+const Items = ({items, handleChange, checkCots, minDate}) => {
     const itemList = items.map((item, index) => {
         let padIndex = (index+1) < 10 ? "0" + (index+1) : index+1;
         return(
-            <li className="boxed gray hat floor" key={index}>
+            <li className="order-form-item boxed lightgray hat floor" key={index}>
                 <h4>Item {padIndex}</h4>
                 <div className="section row hat">
-                    <div className="flex-8 section row">
-                        <label htmlFor={`item ${index} itemNum`}>Part#/Rev:</label>
-                        <input
-                            name={`item ${index} itemNum`}
-                            onChange={handleChange}
-                            type="text"
-                        />
+                    <div className="section col">
+                        <div className="section row hat floor">
+                            <label className="flex-1" htmlFor={`item ${index} itemNum`}>Part#/Rev:</label>
+                            <input
+                                className="flex-10"
+                                name={`item ${index} itemNum`}
+                                onChange={handleChange}
+                                type="text"
+                                placeholder="Part#/Rev"
+                            />
+                        </div>
+                        <div className="section row hat floor">
+                            <label className="flex-1" htmlFor={`item ${index} description`}>Description:</label>
+                            <input
+                                className="flex-10"
+                                name={`item ${index} description`}
+                                onChange={handleChange}
+                                type="text"
+                                placeholder="Description"
+                            />
+                        </div>
+                        <div className="section row hat floor">
+                            <div className="section row">
+                                <label htmlFor="unitCost">Unit Cost:</label>
+                                $&nbsp;<input
+                                    name={`item ${index} unitCost`}
+                                    onChange={handleChange}
+                                    type="number"
+                                    min="0.00"
+                                    step="0.01"
+                                    placeholder="0.00"
+                                />
+                            </div>
+                            <div className="section row">
+                                <label htmlFor={`item ${index} quantity`}>Quantity:</label>
+                                x&nbsp;<input
+                                    name={`item ${index} quantity`}
+                                    onChange={handleChange}
+                                    type="number"
+                                    min="1"
+                                    placeholder="1"
+                                />
+                            </div>
+                            <div className="section row">
+                                <label htmlFor={`item ${index} unitCost`}>Deliver By:</label>
+                                <input
+                                    name={`item ${index} delivery`}
+                                    onChange={handleChange}
+                                    type="date"
+                                    min={minDate}
+                                />
+                            </div>
+                            <div className="section row">
+                                <label htmlFor={`item ${index} itemNum`}>COTS:</label>
+                                <input className="checkbox" name={`${index}`} type="checkbox" onClick={checkCots}/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex-2 section row">
-                        <label htmlFor={`item ${index} itemNum`}>COTS:</label>
-                        <input className="checkbox" name={`${index}`} type="checkbox" onClick={checkCots}/>
-                    </div>
-                </div>
-                <div className="section row hat">
-                    <label htmlFor={`item ${index} description`}>Description:</label>
-                    <input
-                        name={`item ${index} description`}
-                        onChange={handleChange}
-                        type="text"
-                    />
-                </div>
-                <div className="section row hat">
-                    <div className="flex-4 section row">
-                        <label htmlFor="unitCost">Unit Cost:</label>
-                        $&nbsp;<input
-                            name={`item ${index} unitCost`}
-                            onChange={handleChange}
-                            type="number"
-                            min="0.00"
-                            step="0.01"
-                            placeholder="0.00"
-                        />
-                    </div>
-                    <div className="flex-3 section row pad">
-                        <label htmlFor={`item ${index} quantity`}>Quantity:</label>
-                        x&nbsp;<input
-                            name={`item ${index} quantity`}
-                            onChange={handleChange}
-                            type="number"
-                            min="1"
-                            placeholder="1"
-                        />
-                    </div><div className="flex-4"></div>
-                </div>
-                <div className="section row hat">
-                    <div className="flex-4 section row">
-                        <label htmlFor={`item ${index} unitCost`}>Deliver By:</label>
-                        <input
-                            name={`item ${index} delivery`}
-                            onChange={handleChange}
-                            type="date"
-                        />
-                    </div><div className="flex-8"></div>
                 </div>
             </li>
         );
@@ -82,12 +87,14 @@ const Contacts = ({contacts, handleChange}) => {
                 name={`contact ${i} name`}
                 onChange={handleChange}
                 type="text"
+                placeholder="Name"
             />
             <label htmlFor={`contact ${i} email`}>Email:</label>
             <input
                 name={`contact ${i} email`}
                 onChange={handleChange}
                 type="email"
+                placeholder="Email"
             />
         </li>
     ));
@@ -245,6 +252,9 @@ export default class OrderForm extends Component {
         
         // TODO: add an option to input the TOTAL QUANTITY:
         // const totalQuantInput = false;
+        const minDate = (new Date()).toISOString().substring(0,10);
+        console.log('minDate:');
+        console.log(minDate);
         
         const projectid = this.state.project;
         
@@ -284,6 +294,7 @@ export default class OrderForm extends Component {
                                 name="metadata vendor"
                                 onChange={this.handleChange}
                                 type="text"
+                                placeholder="Vendor"
                             />
                             <label htmlFor="quoteNum">Quote #:</label>
                             <input
@@ -291,6 +302,7 @@ export default class OrderForm extends Component {
                                 name="metadata quoteNum"
                                 onChange={this.handleChange}
                                 type="text"
+                                placeholder="Quote #"
                             />
                         </div>
                         
@@ -314,6 +326,7 @@ export default class OrderForm extends Component {
                                 items={items}
                                 handleChange={this.handleChange}
                                 checkCots={this.checkCots}
+                                minDate={minDate}
                             />
                         </ul>
                         <div className="section row space-around dbhat">

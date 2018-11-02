@@ -136,7 +136,7 @@ router
                     case 'quoteNum':
                         result = await db.Project.findById(projectid).populate({
                             "path": "orders",
-                            "match": { "metadata.quoteNum" : new RegExp('^'+query.value+'.*', "i"), "stamped": query.stamped, "canceled": false },
+                            "match": { "metadata.quoteNum" : new RegExp('.*'+query.value+'.*', "i"), "stamped": query.stamped, "canceled": false },
                             "select": "user group project hold metadata.vendor metadata.quoteNum metadata.extendedCost submitTimestamp stampTimestamp"
                         });
                         result = result.orders;

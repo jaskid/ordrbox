@@ -24,7 +24,7 @@ const Ticket = (props) => {
                         {totalCost ? (<div>${totalCost}</div>) : null }
                     </div>
                     <div className="section row space">
-                        <div className="submission-info">{requester} {project ? (<span className="info-proj">- {project}</span>) : null} -&nbsp;
+                        <div className="submission-info">{requester}{project ? (<span className="info-proj">&nbsp;@{project}</span>) : null}&nbsp;-&nbsp;
                             <span className="text-muted">
                                 {/*stampTime ? "Stamped: " : "Submitted: "*/}
                                 <Moment date={ stampTime ? (new Date(stampTime)) : (new Date(submitTime)) } calendar />

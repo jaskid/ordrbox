@@ -4,8 +4,6 @@ mongoose.set('debug', true);
 mongoose.Promise = Promise;
 
 // CONNECT
-// let pw = encodeURIComponent(process.env.MONGO_PW);
-// const url = `mongodb://req-submit:${pw}@ds119323.mlab.com:19323/requestio-testio`
 const url = process.env.MONGO_URL;
 mongoose.connect(url, {
     keepAlive: true,

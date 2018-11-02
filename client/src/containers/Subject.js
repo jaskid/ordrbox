@@ -35,6 +35,7 @@ class Subject extends Component {
     componentDidMount() {
         this.props.removeOrders();
         this.props.queryOrders({stamped: false}, this.props.params);
+        // this.setState({searchKey: 'vendor'});
     }
     
     // SEARCH BAR INPUT
@@ -146,6 +147,8 @@ class Subject extends Component {
                         alerts={subject.alerts ? subject.alerts.length : null}
                         handleChange={this.handleChange}
                         onSearch={this.onSearch}
+                        searchKey={searchKey}
+                        searchValue={searchValue}
                         changeFocus={this.changeFocus}
                         selection={selection}
                         isAdmin={subject.admin}
@@ -153,8 +156,6 @@ class Subject extends Component {
                         isUser={(subjectType === 'user')}
                         isProject={(subjectType === 'project')}
                         inbox={orders.length}
-                        searchKey={searchKey}
-                        searchValue={searchValue}
                     />
                     <div id="subject-display">
                         {errors.message && (

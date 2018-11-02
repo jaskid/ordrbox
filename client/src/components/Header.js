@@ -6,7 +6,7 @@ const Header = props => {
         title,
         numMembers,
         parentGroup,
-        alerts,
+        // alerts,
         isGroup,
         isAdmin,
         isUser,

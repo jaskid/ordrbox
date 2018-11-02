@@ -106,21 +106,26 @@ i.smaller {
 .hat { padding-top: 10px; }
 .dbhat { padding-top: 20px; }
 .floor { padding-bottom: 10px; }
+.lift { margin-bottom: 10px; }
 .pad { padding-left: 16px; }
 .boxed {
   padding: 16px;
   border-radius: 10px;
   margin-top: 20px;
 }
+.underline {
+  border-bottom: 1px solid black;
+}
 .display {
   margin: 2%;
   /*max-width: 800px;*/
-  padding: 16px 8%;
+  padding: 16px 4%;
   border-radius: 10px;
   margin-top: 20px;
-  width: 80%;
+  width: 87.5%;
   /*border: 4px solid rgb(176, 192, 255);*/
-  border: 4px solid rgb(225, 225, 229);
+  border: 2px solid rgb(221,223,226);
+  background-color: rgb(253, 254, 255);
 }
 .centered { margin: 0 auto; }
 
@@ -285,7 +290,7 @@ label {
 .blue { background-color: rgb(57, 147, 221); }
 .yellow { background-color: rgb(253, 184, 51); }
 .red { background-color: red; }
-.lightgray { background-color: rgb(245, 246, 247); }
+.lightgray { background-color: rgb(240, 241, 242); }
 .gray { background-color: rgb(225, 225, 229); }
 .darkgray { background-color: rgb(206, 206, 210); }
 .checkered:nth-child(2n+1) {
@@ -480,7 +485,8 @@ label {
   /* TODO: This is a mess. 82px = header, 50px = navbar. Fix. */
   height: calc(100vh - (82px + 50px));
   overflow: scroll;
-  background-color: rgb(241,241,247);
+  /*background-color: rgb(241,241,247);*/
+  background-color: rgb(233,235,238);
 }
 .loading-wheel {
   margin: 0 auto;
@@ -601,7 +607,7 @@ label {
   margin-top: 10px;
   font-size: 1.3em;
   color: black;
-  animation: slidefade 1s forwards;
+  /*animation: slidefade 1s forwards;*/
 }
 @media only screen and (max-width: 850px) {
   .ticket .quote-num {
@@ -619,8 +625,10 @@ label {
 }
 .ticket .ticket-info {
   padding: 10px;
-  background-color: rgb(253, 254, 255);
-  border: 1px solid rgb(33, 33, 33);
+  background-color: rgb(255, 255, 255);
+  /*border: 1px solid rgb(33, 33, 33);*/
+  border: 1px solid rgb(221,223,226);
+  
   border-radius: 10px 0 0 10px;
 }
 .ticket .vend-info {
@@ -631,8 +639,8 @@ label {
 .ticket .vend-info .quote-num { font-size: .85em; }
 .ticket .submission-info {
   font-size: .8em;
-  font-weight: bold;
-  color: rgb(130, 130, 133);
+  font-weight: 600;
+  color: rgb(98,103,111);
   padding: 5px 0 2px 0;
 }
 .ticket .view-order {
@@ -640,7 +648,7 @@ label {
 }
 .ticket .view-order .btn {
   height: 100%;
-  border: 1px solid rgb(33, 33, 33);
+  border: 1px solid rgb(98,103,111);
   border-left: none;
   width: 100%;
   margin: 0;
@@ -659,11 +667,19 @@ label {
 @keyframes slidefade {
 	0% {
 		opacity: 0;
-		margin-top: 50px;
+		transform: translateY(50px);
 	}
 	100% {
 		opacity: 1;
-		margin-top: 10px;
+		transform: translateY(0);
+	}
+}
+@keyframes fade {
+  0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
 
@@ -686,7 +702,7 @@ orange: rgb(244, 147, 56);
   width: 100vw;
   height: 80vh;
   border-bottom: 4px solid rgb(234,234,234);
-  background: url(./assets/images/background-4.jpg) no-repeat 0 0px;
+  background: url(./assets/images/background-4.jpg) no-repeat 0 -90px;
   background-size: cover;
   animation: slidefade 1s forwards;
 }
@@ -702,7 +718,7 @@ orange: rgb(244, 147, 56);
   font-weight: 400;
 }
 .content .title {
-  font-size: 4em;
+  font-size: 4.7em;
   font-weight: 800;
   color: rgb(0, 158, 237);
 }
@@ -783,7 +799,6 @@ orange: rgb(244, 147, 56);
 .highlights .blurb {
   font-size: 14px;
   font-weight: 400;
-  height: 48px;
   padding: 10px 5px 30px 5px;
 }
 .footer {
@@ -826,4 +841,7 @@ orange: rgb(244, 147, 56);
 }
 .auth-form .btn {
   text-align: center;
+}
+.order-form-item {
+  animation: slidefade 1s forwards;
 }

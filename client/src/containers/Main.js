@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 // ACTIONS
 import { authUser, authConfirm } from '../store/actions/auth';
 import { createGroup, joinGroup } from '../store/actions/auth';
-// import { createProject } from '../store/actions/project';
 import { addAlert, removeAlert } from '../store/actions/alerts';
 import { removeError } from '../store/actions/errors';
-// import { createOrder } from '../store/actions/order';
 
 // COMPONENTS
 import Landing from '../components/Landing';
@@ -47,7 +45,7 @@ const PrivateRoute = ({ render, currentUser, ...rest }) => (
 );
 
 const Main = props => {
-    const { currentUser, authUser, authConfirm, errors, removeError, history, alerts } = props;
+    const { currentUser, authUser, authConfirm, errors, removeError, history } = props;
     return(
         <div className="con">
             <div>
@@ -56,7 +54,6 @@ const Main = props => {
                     <Alert />
                 </AlertsOverlay>
                 */}
-                {/*<button className="btn red" onClick={() => props.addAlert({text: "test alert!", event: "success"})}>TEST ALERT</button>*/}
             </div>
             <Switch>
                 <Route

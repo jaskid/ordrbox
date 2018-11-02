@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 class Landing extends Component {
     constructor(props) {
         super(props);
-        this.state = { scrollY: window.scrollY };
+        this.state = { scrollY: 0 };
     }
     componentDidMount() {
         window.onscroll = () => {
-            if(window.scrollY < 700) {
+            if(window.scrollY < 900) {
                 this.setState({scrollY: window.scrollY});
             }
         };
+        this.setState({scrollY: window.scrollY});
     }
     componentWillUnmount() {
         window.onscroll = () => {};
@@ -55,9 +56,8 @@ class Landing extends Component {
                         <div style={pos1} className="article section flex-responsive center">
                             <div className="info">
                                 Ordrbox is a <strong>lightweight, in-office purchase request management system</strong>.
-                                Teams submit purchase requests to administrators in a <strong>cookie-cutter format</strong>
-                                 - admins may then view the request in
-                                a table to simply copy-paste into the&nbsp;
+                                Teams submit purchase requests to administrators in a <strong>cookie-cutter format</strong>; 
+                                admins view requests in individual tables and simply <strong>copy-paste</strong> into the&nbsp;
                                 <div className="tooltip">
                                         PMIS
                                         <div className="tooltiptext">Procurement Management Information System.</div>
@@ -72,7 +72,7 @@ class Landing extends Component {
                             <p className="info">
                                 All requests, including stamped ones, are stored in a secure database, where they always
                                 live just one search away. Which means no more rummaging through eons-old emails for yesterday's
-                                requests.
+                                requests - adminstrators and submitters alike.
                             </p>
                         </div>
                         <div style={pos3} className="article section flex-responsive center">
@@ -90,7 +90,7 @@ class Landing extends Component {
             
                 <div className="highlights section col">
                     <div className="section row center section-title">Why use Ordrbox?</div>
-                    <div className="section center row hat">
+                    <div className="section center flex-responsive hat">
                         <div className="highlight bubble">
                             <div className="name">Lightning fast.</div>
                             <div className="blurb">
@@ -120,20 +120,19 @@ class Landing extends Component {
                 
                 
                 <div className="footer">
-                    <div className="section col">
-                        <div className="section row center hat">
+                    <div className="section col center">
+                        <div className="section flex-responsive center hat">
                             Questions? Concerns? Requests? Contact me at:&nbsp;&nbsp;
-                            <a className="link" href="mailto:jake@ordrbox.com">jake@ordrbox.com</a>
+                            <a className="link" href="mailto:jcb.kdd@gmail.com">jcb.kdd@gmail.com</a>
                         </div>
                         <div className="section row center hat">
-                            Tips? Fork me on&nbsp;<a className="link">github&nbsp;<i className="fab fa-git-square"></i></a>
+                            Tips? Fork me on&nbsp;<a className="link" href="https://github.com/jcbkdd/ordrbox">github&nbsp;<i className="fab fa-git-square"></i></a>
                         </div>
                     </div>
                 </div>
-            
             </div>
         );
     }
-};
+}
 
 export default Landing;

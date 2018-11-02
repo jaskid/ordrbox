@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import globals from '../globals.json';
 
 export default class AuthForm extends Component {
     constructor(props) {
@@ -10,7 +11,9 @@ export default class AuthForm extends Component {
             surname: '',
             password: '',
             sent: false,
-            confirm_password: confirm_password
+            confirm_password: confirm_password,
+            beta: globals.beta,
+            beta_access: ''
         };
     }
     
@@ -28,7 +31,9 @@ export default class AuthForm extends Component {
             email: this.state.email,
             name: name,
             password: this.state.password,
-            confirm_password: this.state.confirm_password
+            confirm_password: this.state.confirm_password,
+            beta: this.state.beta,
+            beta_access: this.state.beta_access
         };
         const authType = this.props.signUp ? 'signup' : 'signin';
         this.props
@@ -51,7 +56,8 @@ export default class AuthForm extends Component {
             signUp,
             errors
         } = this.props;
-        const { sent } = this.state;
+        const { sent, beta } = this.state;
+        console.log(globals.beta);
         return(
             <div className="section center">
                 <div className="auth-form">
@@ -69,6 +75,7 @@ export default class AuthForm extends Component {
                                 onChange={this.handleChange}
                                 value={email}
                                 type="text"
+                                placeholder='Email'
                             />
                         </div>
                         
@@ -80,6 +87,7 @@ export default class AuthForm extends Component {
                                 name="password"
                                 onChange={this.handleChange}
                                 type="password"
+                                placeholder='Password'
                             />
                         </div>
                         {signUp && (
@@ -92,12 +100,13 @@ export default class AuthForm extends Component {
                                         name="confirm_password"
                                         onChange={this.handleChange}
                                         type="password"
+                                        placeholder='Password'
                                     />
                                 </div>
                                 <div className="section row end floor">
                                     <p className="footnote">Must be at least 6 chars. and contain 1 uppercase, 1 lowercase, and 1 number.</p>
                                 </div>
-                                <div className="section row space">
+                                <div className="section row space floor">
                                     <h3>Name:</h3>
                                     <div className="tooltip">
                                         <i className="far fa-question-circle"></i>
@@ -113,7 +122,7 @@ export default class AuthForm extends Component {
                                         name="firstname"
                                         onChange={this.handleChange}
                                         type="text"
-                                        placeholder=''
+                                        placeholder='First'
                                     />
                                 </div>
                                 <div className="section row space hat floor">
@@ -124,9 +133,27 @@ export default class AuthForm extends Component {
                                         name="surname"
                                         onChange={this.handleChange}
                                         type="text"
-                                        placeholder=''
+                                        placeholder='Last'
                                     />
                                 </div>
+                                {beta ? (
+                                    <div className="section row space hat floor">
+                                        <label className="flex-4" htmlFor="beta_access">Beta Access Code:</label>
+                                        <input
+                                            className="flex-6"
+                                            id="beta_access"
+                                            name="beta_access"
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            placeholder=''
+                                        />
+                                        <div className="tooltip">
+                                            <i className="far fa-question-circle"></i>
+                                            <div className="tooltiptext">Ordrbox is currently in beta testing mode only.
+                                            (All beta access data will be saved.)</div>
+                                        </div>
+                                    </div>
+                                ) : (null)}
                             </div>
                         )}
                         <hr/>

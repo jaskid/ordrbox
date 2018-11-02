@@ -101,90 +101,97 @@ export default class GroupSettings extends Component {
         } = this.state;
         
         return(
-            <div className="settings section col display">
-                {error && (
-                    <div className="alert-box">{error}</div>
-                )}
-                <h2>Group Settings</h2>
-                <div className="section row hat floor">
-                    <label className="flex-2"><strong>Group Handle:</strong></label><div className="flex-8">{group.handle}</div>
-                </div>
-                <div className="section row hat floor">
-                    <label className="flex-2" htmlFor="name"><strong>Group Name:</strong></label>
-                    <input
-                        className="flex-8"
-                        name="newName"
-                        value={newName}
-                        onChange={this.handleChange}
-                        type="text"
-                    />
-                </div>
-                <div className="section row floor">
-                    <label className="flex-2" htmlFor="description"><strong>Group Description:</strong></label>
-                    <input
-                        className="flex-8"
-                        name="newDescription"
-                        value={newDescription}
-                        onChange={this.handleChange}
-                        type="textarea"
-                    />
-                </div>
-                <div className="section row hat floor end">
-                    <button type="submit" onClick={this.handleSubmit} className="btn small blue">
-                        Confirm Changes
-                    </button>
-                </div>
-                
-                <hr/>
-                <div className="section col hat floor">
-                    <div className="section row hat floor center">
-                        <h3>Projects:</h3>
-                    </div>
-                    <div>
-                        <ul id="settings-project-list">
-                            <ProjectList
-                                projects={group.projects}
-                                openModal={this.openModal}
-                            />
-                        </ul>
-                    </div>
-                    {showProjectForm ? (
-                        <ProjectForm
-                            onSubmit={createProject}
-                            reloadPage={this.props.reloadPage}
-                            toggleForm={this.toggleProjectForm}
-                            userid={userid}
-                            groupid={groupid}
-                        />
-                    ) : (
-                        <div className="section row hat floor center">
-                            <button
-                                name="settings-newProject"
-                                className="btn blue"
-                                onClick={this.toggleProjectForm}>
-                                    <i className="fas fa-plus"></i>
-                            </button>
-                        </div>
+            <div>
+                <div className="settings section col display">
+                    {error && (
+                        <div className="alert-box">{error}</div>
                     )}
+                    <h3 className="hat lift underline">Group Settings</h3>
+                    <div className="section row hat floor">
+                        <label className="flex-2"><strong>Group Handle:</strong></label><div className="flex-8">{group.handle}</div>
+                    </div>
+                    <div className="section row hat floor">
+                        <label className="flex-2" htmlFor="name"><strong>Group Name:</strong></label>
+                        <input
+                            className="flex-8"
+                            name="newName"
+                            value={newName}
+                            onChange={this.handleChange}
+                            type="text"
+                        />
+                    </div>
+                    <div className="section row floor">
+                        <label className="flex-2" htmlFor="description"><strong>Group Description:</strong></label>
+                        <input
+                            className="flex-8"
+                            name="newDescription"
+                            value={newDescription}
+                            onChange={this.handleChange}
+                            type="textarea"
+                        />
+                    </div>
+                    <div className="section row hat floor end">
+                        <button type="submit" onClick={this.handleSubmit} className="btn small blue">
+                            Confirm Changes
+                        </button>
+                    </div>
+                    
+                    <hr/>
                 </div>
-                <div className="section row hat floor center">
-                    <button
-                        className="btn red"
-                        onClick={() => this.openModal(group.name)}>
-                            DELETE GROUP
-                    </button>
+                <div className="settings section col display">
+                    <h3 className="hat lift underline">Projects</h3>
+                    <div className="section col floor">
+                        <div className="floor">
+                            {(group.projects.length > 0) ? (
+                            <ul id="settings-project-list">
+                                <ProjectList
+                                    projects={group.projects}
+                                    openModal={this.openModal}
+                                />
+                            </ul>
+                            ) : (<div>No projects found! Create a new one with the plus button below.</div>)}
+                        </div>
+                        {showProjectForm ? (
+                            <ProjectForm
+                                onSubmit={createProject}
+                                reloadPage={this.props.reloadPage}
+                                toggleForm={this.toggleProjectForm}
+                                userid={userid}
+                                groupid={groupid}
+                            />
+                        ) : (
+                            <div className="section row hat floor center">
+                                <button
+                                    name="settings-newProject"
+                                    className="btn blue"
+                                    onClick={this.toggleProjectForm}>
+                                        <i className="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <Modal show={this.state.showModal} handleClose={this.closeModal}>
-                    <DeleteForm
-                        subjectName={subjectName}
-                        groupid={groupid}
-                        projectid={projectid}
-                        history={history}
-                        onSubmit={projectid ? deleteProject : deleteGroup}
-                        closeModal={this.closeModal}
-                        reloadPage={this.props.reloadPage}
-                    />
-                </Modal>
+                <div className="settings section col display">
+                    <h3 className="hat lift underline">Danger Zone</h3>
+                    <div className="section row hat floor center">
+                        <button
+                            className="btn small red"
+                            onClick={() => this.openModal(group.name)}>
+                                DELETE GROUP
+                        </button>
+                    </div>
+                    <Modal show={this.state.showModal} handleClose={this.closeModal}>
+                        <DeleteForm
+                            subjectName={subjectName}
+                            groupid={groupid}
+                            projectid={projectid}
+                            history={history}
+                            onSubmit={projectid ? deleteProject : deleteGroup}
+                            closeModal={this.closeModal}
+                            reloadPage={this.props.reloadPage}
+                        />
+                    </Modal>
+                </div>
             </div>
         );
     }

@@ -53,7 +53,7 @@ export default class GroupForm extends Component {
                 <div className="auth-form">
                     <h2>{heading}</h2>
                     {error && (
-                        <div className="alert-box">{error}</div>
+                        <div className="alert-box">{error.message}</div>
                     )}
                     <form onSubmit={this.handleSubmit}>
                         {createGroup && (
@@ -66,6 +66,7 @@ export default class GroupForm extends Component {
                                         name="name"
                                         onChange={this.handleChange}
                                         type="text"
+                                        placeholder="Display Name"
                                     />
                                 </div>
                                 <div className="section row end floor">
@@ -81,6 +82,7 @@ export default class GroupForm extends Component {
                                 name="handle"
                                 onChange={this.handleChange}
                                 type="text"
+                                placeholder="Handle"
                             />
                         </div>
                         {createGroup && (
@@ -96,6 +98,7 @@ export default class GroupForm extends Component {
                                 name="password"
                                 onChange={this.handleChange}
                                 type="password"
+                                placeholder="Password"
                             />
                         </div>
                         {createGroup && (
@@ -108,6 +111,7 @@ export default class GroupForm extends Component {
                                         name="confirm_password"
                                         onChange={this.handleChange}
                                         type="password"
+                                        placeholder="Password"
                                     />
                                 </div>
                                 <div className="section row end floor">
@@ -122,6 +126,7 @@ export default class GroupForm extends Component {
                                             name="description"
                                             onChange={this.handleChange}
                                             type="text"
+                                            placeholder="Group Description"
                                         ></input>
                                         
                                     </div>

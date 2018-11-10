@@ -33,9 +33,8 @@ export default class GroupForm extends Component {
             .then(res => {
                 this.props.history.push(`/hub/group/${res.id}`);
             })
-            .catch(res => {
-                console.log(res);
-                this.setState({sent: false, error: res});
+            .catch(err => {
+                this.setState({sent: false, error: err.message});
                 return;
             });
     };
@@ -53,7 +52,7 @@ export default class GroupForm extends Component {
                 <div className="auth-form">
                     <h2>{heading}</h2>
                     {error && (
-                        <div className="alert-box">{error.message}</div>
+                        <div className="alert-box">{error}</div>
                     )}
                     <form onSubmit={this.handleSubmit}>
                         {createGroup && (
@@ -82,7 +81,7 @@ export default class GroupForm extends Component {
                                 name="handle"
                                 onChange={this.handleChange}
                                 type="text"
-                                placeholder="Handle"
+                                placeholder="group-handle"
                             />
                         </div>
                         {createGroup && (

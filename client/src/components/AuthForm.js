@@ -57,7 +57,6 @@ export default class AuthForm extends Component {
             errors
         } = this.props;
         const { sent, beta } = this.state;
-        console.log(globals.beta);
         return(
             <div className="section center">
                 <div className="auth-form">

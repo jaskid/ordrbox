@@ -5,15 +5,15 @@ const Ticket = (props) => {
     const {
         viewOrder,
         groupid,
-        orderid, 
-        requester, 
-        vendor, 
-        quoteNum, 
-        project, 
-        submitTime, 
-        stampTime, 
-        totalCost, 
-        hold, 
+        orderid,
+        requester,
+        vendor,
+        quoteNum,
+        project,
+        submitTime,
+        stampTime,
+        totalCost,
+        hold,
         canceled
     } = props;
     return(
